@@ -10,14 +10,14 @@ function App() {
     <div
       style={{
         width: 500,
-        margin: "50px auto",
+        margin: "0 auto",
         display: "flex",
         flexDirection: "column",
         backgroundColor: "white",
         padding: 20,
         boxShadow: "0 0 10px 4px #bfbfbf",
         borderRadius: 5,
-        height: "80vh",
+        height: "90vh",
       }}
     >
       <Title style={{ textAlign: "center" }}>TODO APP with REDUX</Title>
