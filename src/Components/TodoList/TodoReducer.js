@@ -17,7 +17,7 @@ const todoReducer = (state = initState, action) => {
       const cloneState = [...state];
 
       let index = cloneState.findIndex(
-        (element) => element.id == action.payload
+        (element) => element.id === action.payload
       );
       console.log("index: ", index);
 
