@@ -1,17 +1,33 @@
 import { Col, Row, Input, Typography, Radio, Select, Tag } from "antd";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { filterSearchChange } from "../../redux/actions";
+import {
+  filterPriorityChange,
+  filterSearchChange,
+  filterStatusChange,
+} from "../../redux/actions";
 
 const { Search } = Input;
 
 export default function Filters() {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
+  const [filterStatus, setFilterStatus] = useState("All");
+  // const [filterPriority, setFilterPriority] = useState([]);
 
   const handleSearchTextChange = (e) => {
     setSearchText(e.target.value);
     dispatch(filterSearchChange(e.target.value));
+  };
+
+  const handleFilterStatusChange = (e) => {
+    setFilterStatus(e.target.value);
+    dispatch(filterStatusChange(e.target.value));
+  };
+
+  const handleFilterPriorityChange = (arryPriority) => {
+    console.log("arryPriority: ", arryPriority);
+    dispatch(filterPriorityChange(arryPriority));
   };
   return (
     <Row justify="center">
@@ -34,7 +50,7 @@ export default function Filters() {
         >
           Filter By Status
         </Typography.Paragraph>
-        <Radio.Group>
+        <Radio.Group value={filterStatus} onChange={handleFilterStatusChange}>
           <Radio value="All">All</Radio>
           <Radio value="Completed">Completed</Radio>
           <Radio value="Todo">To do</Radio>
@@ -52,6 +68,7 @@ export default function Filters() {
           allowClear
           placeholder="Please select"
           style={{ width: "100%" }}
+          onChange={handleFilterPriorityChange}
         >
           <Select.Option value="High" label="High">
             <Tag color="red">High</Tag>

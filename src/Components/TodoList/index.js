@@ -10,6 +10,7 @@ export default function TodoList() {
   const dispatch = useDispatch();
 
   const todoList = useSelector(todoListRemaining);
+  console.log("todoList: ", todoList);
 
   const [todoName, setTodoName] = useState("");
   const [priority, setPriority] = useState("Medium");
@@ -38,7 +39,16 @@ export default function TodoList() {
     <Row style={{ height: "calc(100% - 40px)" }}>
       <Col span={24} style={{ height: "calc(100% - 40px)", overflowY: "auto" }}>
         {todoList.map((item, index) => {
-          return <Todo key={index} name={item.name} prioriry={item.priority} />;
+          console.log("item: ", item);
+          return (
+            <Todo
+              key={item.id} // cai key nay important nha, khong la resolve re-render bi nham
+              id={item.id}
+              name={item.name}
+              prioriry={item.priority}
+              isComplete={item.isComplete}
+            />
+          );
         })}
       </Col>
       <Col span={24}>
