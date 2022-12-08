@@ -3,8 +3,8 @@ import { useState } from "react";
 import Todo from "../Todo";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo } from "../../redux/actions";
 import { todoListRemaining } from "../../redux/Selectors";
+import { addTask } from "./todoSlice";
 
 export default function TodoList() {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export default function TodoList() {
       priority: priority,
       isComplete: false,
     };
-    dispatch(addTodo(todo));
+    dispatch(addTask(todo));
     setTodoName("");
     setPriority("Medium");
   };
